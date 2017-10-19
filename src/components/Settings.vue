@@ -1,6 +1,14 @@
 <template>
 <div>
-  settings
+  <div class="row">
+    <div class="col-md-8 col-xs-24">
+      <at-input v-model="iftttLink" placeholder="IFTTT Link">
+        <template slot="prepend">
+          <i class="icon icon-link"></i>
+        </template>
+      </at-input>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -9,7 +17,7 @@ export default {
   name: 'Main',
   data () {
     return {
-      msg: 'Welcome to Process Automator'
+      iftttLink: 'Welcome to Process Automator'
     }
   }
 }
