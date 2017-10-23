@@ -1,53 +1,84 @@
 <template>
-  <div>
+  <div class="edit">
     <div class="row">
       <div class="col-md-8 col-xs-24">
-        <at-input v-model="name" placeholder="Name"></at-input>
+        <at-input v-model="appLocal.name" placeholder="Name"></at-input>
       </div>
     </div>
     <div class="row">
       <div class="col-md-8 col-xs-24">
-        <at-select v-model="type">
+        <at-select v-model="appLocal.type" disabled>
           <at-option value="IFTTT">IFTTT</at-option>
         </at-select>
       </div>
     </div>
     <div class="row">
       <div class="col-md-8 col-xs-24">
-        <at-input v-model="trigger" placeholder="Trigger Name"></at-input>
+        <at-input v-model="appLocal.trigger" placeholder="Trigger Name"></at-input>
       </div>
     </div>
     <div class="row">
       <div class="col-md-8 col-xs-24">
-        <at-input v-model="value1" placeholder="Value 1"></at-input>
+        <at-input v-model="appLocal.value1" placeholder="Value 1"></at-input>
       </div>
       <div class="col-md-8 col-xs-24">
-        <at-input v-model="value2" placeholder="Value 2"></at-input>
+        <at-input v-model="appLocal.value2" placeholder="Value 2"></at-input>
       </div>
       <div class="col-md-8 col-xs-24">
-        <at-input v-model="value3" placeholder="Value 3"></at-input>
+        <at-input v-model="appLocal.value3" placeholder="Value 3"></at-input>
       </div>
     </div>
+    <div class="row">
+      <at-button type="primary" v-if="create" @click="addApp()">Create</at-button>
+      <at-button type="primary" v-if="!create" @click="deleteApp()">Delete</at-button>
+      <at-button type="primary" v-if="!create" @click="updateApp()">Save</at-button>
+    </div>
+
   </div>
 
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 
 export default {
-  name: 'Main',
+  name: 'edit',
+  props: {
+    create: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
+    app: Object
+  },
   methods: {
     addApp () {
-      // this.list = AppsService.apps
+      if (!this.create) return null
+      this.$emit('created:app')
+    },
+    deleteApp () {
+      if (this.create) return null
+      this.showNew = false
+    },
+    updateApp () {
+      if (this.create) return null
     }
   },
-  computed: {
-    ...mapGetters({
-      list: 'getApplications'
-    })
+  data () {
+    return {
+      appLocal: this.app
+    }
   }
 }
 </script>
 
+<style scoped lang="scss">
+.row {
+  margin-bottom: 15px
+}
+.edit {
+  margin-top: 10px;
+  border: 1px dashed #eee;
+  padding: 10px
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <at-menu mode="horizontal" active-Name="main">
+    <at-menu mode="horizontal" active-Name="main" theme="dark">
       <at-menu-item name="main" >
         <div v-on:click="goTo('')"><i class="icon icon-home"></i>Main</div>
       </at-menu-item>
