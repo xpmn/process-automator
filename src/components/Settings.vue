@@ -17,10 +17,10 @@ export default {
   name: 'Main',
   data () {
     return {
-      iftttLink: 'Welcome to Process Automator'
+      iftttLink: ''
     }
   }
 }
 </script>
 
-</style>
+<style lang="scss"></style>

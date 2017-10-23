@@ -11,10 +11,11 @@ const applications = {
     [types.ADD_APPLICATION] (state, { app }) {
       state.list.push(app)
     },
-    [types.UPDATE_APPLICATION] (state, { id, app }) {
+    [types.UPDATE_APPLICATION] (state, { app }) {
       state.list.forEach((application) => {
-        if (app.id === id) {
+        if (app.id === application.id) {
           app = application
+          app.edit = false
         }
       })
     },
@@ -33,8 +34,20 @@ const applications = {
         console.log(err)
       }
     },
-    saveData ({ commit, state }) {
+    saveData ({ state }) {
       localStorage.setItem('apps', JSON.stringify(state.list || []))
+    },
+    addApp ({ commit, dispatch }, app) {
+      commit(types.ADD_APPLICATION, {app: app})
+      dispatch('saveData')
+    },
+    updateApp ({ commit, dispatch }, app) {
+      commit(types.UPDATE_APPLICATION, {app: app})
+      dispatch('saveData')
+    },
+    deleteApp ({ commit, dispatch }, app) {
+      commit(types.DELETE_APPLICATION, app.id)
+      dispatch('saveData')
     }
   },
   getters: {
