@@ -7,8 +7,9 @@
     </div>
     <div class="row">
       <div class="col-md-8 col-xs-24">
-        <at-select v-model="appLocal.type" disabled>
+        <at-select  placeholder="Type">
           <at-option value="IFTTT">IFTTT</at-option>
+          <at-option value="IFTTT2">IFTTT2</at-option>
         </at-select>
       </div>
     </div>
@@ -54,14 +55,18 @@ export default {
   methods: {
     addApp () {
       if (!this.create) return null
-      this.$emit('created:app')
+      this.$store.dispatch('addApp', this.appLocal)
+      this.$emit('done:edit')
     },
     deleteApp () {
       if (this.create) return null
-      this.showNew = false
+      this.$store.dispatch('deleteApp', this.appLocal)
+      this.$emit('done:edit')
     },
     updateApp () {
       if (this.create) return null
+      this.$store.dispatch('updateApp', this.appLocal)
+      this.$emit('done:edit')
     }
   },
   data () {

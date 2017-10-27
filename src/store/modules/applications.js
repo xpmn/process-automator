@@ -48,6 +48,9 @@ const applications = {
     deleteApp ({ commit, dispatch }, app) {
       commit(types.DELETE_APPLICATION, app.id)
       dispatch('saveData')
+    },
+    runApp ({ state }, app) {
+      console.log(state)
     }
   },
   getters: {
