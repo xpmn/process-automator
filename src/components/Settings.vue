@@ -2,7 +2,7 @@
 <div>
   <div class="row">
     <div class="col-md-8 col-xs-24">
-      <at-input v-model="iftttLink" placeholder="IFTTT Link">
+      <at-input v-model="iftttKey" placeholder="IFTTT Link">
         <template slot="prepend">
           <i class="icon icon-link"></i>
         </template>
@@ -14,10 +14,11 @@
 
 <script>
 export default {
-  name: 'Main',
+  name: 'settings',
   data () {
     return {
-      iftttLink: ''
+      iftttLink: 'https://maker.ifttt.com/trigger/',
+      iftttKey: ''
     }
   }
 }

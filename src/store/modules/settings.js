@@ -29,4 +29,4 @@ const settings = {
   }
 }
 
-export default applications
+export default settings
